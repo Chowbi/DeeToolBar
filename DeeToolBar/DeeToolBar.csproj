@@ -22,21 +22,44 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app.css" />
-    <Content Include="index.html" />
-    <Content Include="web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="typings\chrome.d.ts" />
+    <TypeScriptCompile Include="typings\filesystem.d.ts" />
+    <TypeScriptCompile Include="typings\MediaStream.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="web.Debug.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
-    <None Include="web.Release.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
+    <Content Include="Content\deezer-icon.png" />
+    <Content Include="Content\next.png" />
+    <Content Include="Content\off.png" />
+    <Content Include="Content\on.png" />
+    <Content Include="Content\pause.png" />
+    <Content Include="Content\play.png" />
+    <Content Include="Content\playlist.png" />
+    <Content Include="Content\prev.png" />
+    <Content Include="Content\preview.png" />
+    <Content Include="Content\volDown.png" />
+    <Content Include="Content\volUp.png" />
+    <Content Include="content_scripts\actions.js" />
+    <Content Include="content_scripts\jquery-2.1.4.min.js" />
+    <Content Include="content_scripts\jquery-simulator.js" />
+    <Content Include="content_scripts\jquery-ui.min.js" />
+    <Content Include="Popup\bootstrap.css" />
+    <Content Include="Popup\DeeCtrl.html" />
+    <TypeScriptCompile Include="Popup\deeCtrl.ts" />
+    <Content Include="Popup\style.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="manifest.json" />
+    <Content Include="manifest.json.bak" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="obj\Release\TempPE\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>

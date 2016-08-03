@@ -1,3 +1,5 @@
+///<reference path="../typings/chrome.d.ts"/>
+
 document.addEventListener("click", function (e) {
     var id = e.target['id'];
     var alt = e.target['alt'];
@@ -17,16 +19,16 @@ function captureMediaKeys() {
         chrome.commands.onCommand.addListener(function (command) {
             switch (command) {
                 case "MediaPrevTrack":
-                    previous();
+                    actOnDeezerTab(true, "previous");
                     break;
                 case "MediaNextTrack":
-                    next();
+                    actOnDeezerTab(true, "next");
                     break;
                 case "MediaPlayPause":
-                    play();
+                    actOnDeezerTab(true, "play");
                     break;
                 case "MediaStop":
-                    pause();
+                    actOnDeezerTab(true, "pause");
                     break;
 
             }
@@ -34,15 +36,15 @@ function captureMediaKeys() {
     }
     else {
         alert('captureMediaKeys : ' + _captureMediaKeys);
-        //chrome.commands.removeListener();
+        chrome.commands.onCommand.removeListener(function (command) { alert(command); });
     }
 }
 
-function actOnDeezerTab(focusTab, action) {
-    chrome.tabs.query({ url: "*://*.deezer.com/*" }, function (tabs) { actOnTab(tabs, action); });
+function actOnDeezerTab(focusTab: boolean, action: string) {
+    chrome.tabs.query({ url: "*://*.deezer.com/*" }, function (tabs) { actOnTab(tabs, focusTab, action); });
 }
 
-function actOnTab(tabs, action) {
+function actOnTab(tabs: chrome.tabs.Tab[], focusTab: boolean, action: string) {
     if (tabs.length == 0)
         chrome.tabs.create({ url: "http://www.deezer.com/login", active: true });
     else {
