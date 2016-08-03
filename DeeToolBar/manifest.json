@@ -1,0 +1,46 @@
+{
+  "manifest_version": 2,
+  "name": "DeeToolbar",
+  "version": "1.0",  
+  
+  "description": "Adds a browser action icon to the toolbar to take control of deezer tab. ",
+
+  "icons":{
+	"48" : "Content/play.png"
+  },
+
+  "browser_action": {
+    "default_icon": "Content/deezer-icon.png",
+    "default_title": "DeeToolbar",
+    "default_popup": "Popup/DeeCtrl.html"
+  },
+
+  "permissions": [
+    "http://www.deezer.com/*",
+    "https://www.deezer.com/*",
+    "tabs",
+    "commands"
+  ], 
+  "commands": {
+          "MediaPrevTrack": {
+            "suggested_key": {
+              "default": "MediaPrevTrack"
+            }
+          },
+          "MediaNextTrack": {
+            "suggested_key": {
+              "default": "MediaNextTrack"
+            }
+          },
+          "MediaPlayPause": {
+            "suggested_key": {
+              "default": "MediaPlayPause"
+            }
+          },
+          "MediaStop": {
+            "suggested_key": {
+              "default": "MediaStop"
+            }
+          }
+        }
+}
