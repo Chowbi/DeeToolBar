@@ -1,63 +1,73 @@
 ///<reference path="../typings/chrome.d.ts"/>
 
-document.addEventListener("click", function (e) {
+document.addEventListener("click", function (e: MouseEvent) {
     var id = e.target['id'];
     var alt = e.target['alt'];
     if (id == 'captureKeys')
-        captureMediaKeys();
+        captureMediaKeys(true);
     else
         actOnDeezerTab(alt == 'playlist', alt);
 });
 
-var _captureMediaKeys = false;
-function captureMediaKeys() {
-    _captureMediaKeys = !_captureMediaKeys;
-    var src = "../Content/";
-    src += _captureMediaKeys ? "on.png" : "off.png";
-    document.getElementById("captureKeys").setAttribute("src", src);
-    if (_captureMediaKeys) {
-        chrome.commands.onCommand.addListener(function (command) {
-            switch (command) {
-                case "MediaPrevTrack":
-                    actOnDeezerTab(true, "previous");
-                    break;
-                case "MediaNextTrack":
-                    actOnDeezerTab(true, "next");
-                    break;
-                case "MediaPlayPause":
-                    actOnDeezerTab(true, "play");
-                    break;
-                case "MediaStop":
-                    actOnDeezerTab(true, "pause");
-                    break;
 
-            }
-        });
-    }
-    else {
-        alert('captureMediaKeys : ' + _captureMediaKeys);
-        chrome.commands.onCommand.removeListener(function (command) { alert(command); });
-    }
+
+captureMediaKeys(false);
+
+chrome.commands.getAll(function (commands) {
+    commands.forEach(function (command) {
+        console.log(command);
+    });
+});
+
+function captureMediaKeys(changeState: boolean) {
+    chrome.tabs.query({ url: "*://*.deezer.com/*" }, function (tabs) {
+        if (tabs.length == 0)
+            chrome.tabs.create({ url: "http://www.deezer.com/login", active: true });
+        else {
+            let id: number = tabs[0].id;
+            chrome.tabs.sendMessage(id, { execute: 'getCaptureMediaKey', changeState: changeState }, (result: boolean) => {
+                let _captureMediaKeys: boolean = result;
+                var src = "../Content/";
+                src += _captureMediaKeys ? "on.png" : "off.png";
+                document.getElementById("captureKeys").setAttribute("src", src);
+                if (_captureMediaKeys) {
+                    chrome.commands.onCommand.addListener(function (command) {
+                        switch (command) {
+                            case "MediaPrevTrack":
+                                actOnDeezerTab(true, "Previous");
+                                break;
+                            case "MediaNextTrack":
+                                actOnDeezerTab(true, "Next");
+                                break;
+                            case "MediaPlayPause":
+                                actOnDeezerTab(true, "Play");
+                                break;
+                            case "MediaStop":
+                                actOnDeezerTab(true, "Pause");
+                                break;
+
+                        }
+                    });
+                }
+                else {
+                    chrome.commands.onCommand.removeListener(function (command) { alert(command); });
+                }
+            });
+        }
+    });
 }
+
+
 
 function actOnDeezerTab(focusTab: boolean, action: string) {
-    chrome.tabs.query({ url: "*://*.deezer.com/*" }, function (tabs) { actOnTab(tabs, focusTab, action); });
-}
-
-function actOnTab(tabs: chrome.tabs.Tab[], focusTab: boolean, action: string) {
-    if (tabs.length == 0)
-        chrome.tabs.create({ url: "http://www.deezer.com/login", active: true });
-    else {
-        if (focusTab)
-            chrome.tabs.update(tabs[0].id, { active: true });
-        chrome.tabs.executeScript(tabs[0].id, { file: "../content_scripts/jquery-2.1.4.min.js" });
-        chrome.tabs.executeScript(tabs[0].id, { file: "../content_scripts/jquery-ui.min.js" });
-        chrome.tabs.executeScript(tabs[0].id, { file: "../content_scripts/jquery-simulator.js" });
-        chrome.tabs.executeScript(tabs[0].id, { file: "../content_scripts/actions.js" });
-        chrome.tabs.sendMessage(tabs[0].id, { execute: action }, result);
-    }
-}
-
-function result(message) {
-    console.log(message.message);
+    chrome.tabs.query({ url: "*://*.deezer.com/*" }, function (tabs) {
+        if (tabs.length == 0)
+            chrome.tabs.create({ url: "http://www.deezer.com/login", active: true });
+        else {
+            let id: number = tabs[0].id;
+            if (focusTab)
+                chrome.tabs.update(id, { active: true });
+            chrome.tabs.sendMessage(id, { execute: action });
+        }
+    });
 }

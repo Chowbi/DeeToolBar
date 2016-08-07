@@ -127,7 +127,7 @@ interface MediaStreamTrack extends EventTarget {
     getCapabilities(): MediaTrackCapabilities;
     getConstraints(): MediaTrackConstraints;
     getSettings(): MediaTrackSettings;
-    applyConstraints(constraints: MediaTrackConstraints): Promise<void>;
+    //applyConstraints(constraints: MediaTrackConstraints): Promise<void>;
 }
 
 interface MediaTrackCapabilities {
@@ -190,8 +190,8 @@ interface Navigator {
 interface MediaDevices {
     getSupportedConstraints(): MediaTrackSupportedConstraints;
 
-    getUserMedia(constraints: MediaStreamConstraints): Promise<MediaStream>;
-    enumerateDevices(): Promise<MediaDeviceInfo[]>;
+    //getUserMedia(constraints: MediaStreamConstraints): Promise<MediaStream>;
+    //enumerateDevices(): Promise<MediaDeviceInfo[]>;
 }
 
 interface MediaDeviceInfo {
