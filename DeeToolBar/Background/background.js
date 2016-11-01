@@ -48,4 +48,16 @@ function actOnDeezerTab(action) {
         }
     });
 }
+function saveOptions(e) {
+    chrome.storage.local.set({
+        colour: document.getElementById("colour")["value"]
+    });
+}
+function restoreOptions() {
+    chrome.storage.local.get('colour', function (res) {
+        document.getElementById("colour")["value"] = res["colour"];
+    });
+}
+document.addEventListener('DOMContentLoaded', restoreOptions);
+document.querySelector("form").addEventListener("submit", saveOptions);
 //# sourceMappingURL=background.js.map

@@ -1,4 +1,7 @@
 ///<reference path="../typings/chrome.d.ts"/>
+chrome.storage.local.get('colour', function (res) {
+    document.getElementById("popupBody").setAttribute("style", "background-color:" + res["colour"] + ";");
+});
 document.addEventListener("click", function (e) {
     var id = e.target['id'];
     var alt = e.target['alt'];

@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "DeeToolbar",
-  "version": "1.1.2",
+  "version": "1.2",
 
   "description": "Adds a browser action icon to the toolbar to take control of deezer tab. ",
 
@@ -9,7 +9,6 @@
     "48": "Content/play.png",
     "96": "Content/play.png"
   },
-
   "applications": {
     "gecko": {
       "id": "deetoolbar@mozilla.org"
@@ -26,6 +25,10 @@
     "scripts": [ "Background/background.js" ]
   },
 
+  "options_ui": {
+    "page": "Background/options.html"
+  },
+
   "content_scripts": [
     {
       "matches": [ "*://*.deezer.com/*" ],
@@ -40,7 +43,8 @@
 
   "permissions": [
     "*://*.deezer.com/*",
-    "tabs"
+    "tabs",
+    "storage"
   ],
 
   "commands": {

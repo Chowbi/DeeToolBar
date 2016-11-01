@@ -28,6 +28,7 @@
     <TypeScriptCompile Include="typings\MediaStream.d.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Background\options.html" />
     <Content Include="Content\deezer-icon.png" />
     <Content Include="Content\next.png" />
     <Content Include="Content\off.png" />
