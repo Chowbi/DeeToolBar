@@ -1,0 +1,5 @@
+D:\zzz-Perso\DeeToolBar\DeeToolBar\bin\DeeToolBar.dll
+D:\zzz-Perso\DeeToolBar\DeeToolBar\bin\DeeToolBar.pdb
+D:\zzz-Perso\DeeToolBar\DeeToolBar\obj\Debug\DeeToolBar.csprojResolveAssemblyReference.cache
+D:\zzz-Perso\DeeToolBar\DeeToolBar\obj\Debug\DeeToolBar.dll
+D:\zzz-Perso\DeeToolBar\DeeToolBar\obj\Debug\DeeToolBar.pdb

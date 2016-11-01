@@ -1,0 +1,51 @@
+chrome.runtime.onMessage.addListener(controller);
+var _captureMediaKeys;
+function controller(request, sender, callback) {
+    if (request.action == "toogleMediaKey")
+        captureMediaKeys(callback);
+    else if (request.action == "getMediaKey")
+        callback(_captureMediaKeys);
+    else
+        actOnDeezerTab(request.action);
+}
+function captureMediaKeys(callback) {
+    if (_captureMediaKeys == null)
+        _captureMediaKeys = false;
+    _captureMediaKeys = !_captureMediaKeys;
+    if (_captureMediaKeys) {
+        chrome.commands.onCommand.addListener(reactOnKeyboard);
+    }
+    else {
+        chrome.commands.onCommand.removeListener(reactOnKeyboard);
+    }
+    callback(_captureMediaKeys);
+}
+function reactOnKeyboard(command) {
+    switch (command) {
+        case "MediaPrevTrack":
+            actOnDeezerTab("Previous");
+            break;
+        case "MediaNextTrack":
+            actOnDeezerTab("Next");
+            break;
+        case "MediaPlayPause":
+            actOnDeezerTab("Play");
+            break;
+        case "MediaStop":
+            actOnDeezerTab("Pause");
+            break;
+    }
+}
+function actOnDeezerTab(action) {
+    chrome.tabs.query({ url: "*://*.deezer.com/*" }, function (tabs) {
+        if (tabs.length == 0)
+            chrome.tabs.create({ url: "http://www.deezer.com/login", active: true });
+        else {
+            var id = tabs[0].id;
+            if (action == 'Playlist')
+                chrome.tabs.update(id, { active: true });
+            chrome.tabs.sendMessage(id, { execute: action });
+        }
+    });
+}
+//# sourceMappingURL=background.js.map
