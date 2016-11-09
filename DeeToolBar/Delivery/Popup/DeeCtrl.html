@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body id="popupBody">
+    <div>
+        <div class="icon">
+            <img class="volume" onclick="volUp();" alt="Volume Up" src="../Content/volUp.png" data-tooltip="Volume Up" />
+            <img class="volume" onclick="volDown();" alt="Volume Down" src="../Content/volDown.png" data-tooltip="Volume Down" />
+        </div>
+        <img class="icon" onclick="play();" alt="Play" src="../Content/play.png" data-tooltip="Play" />
+        <img class="icon" onclick="pause();" alt="Pause" src="../Content/pause.png" data-tooltip="Pause" />
+        <img class="icon" onclick="playlist();" alt="Playlist" src="../Content/playlist.png" data-tooltip="Show playlist" />
+        <img class="icon" onclick="previous();" alt="Previous" src="../Content/prev.png" data-tooltip="Previous" />
+        <img class="icon" onclick="next();" alt="Next" src="../Content/next.png" data-tooltip="Next" />
+        <div class="icon">|</div>
+        <img id="captureKeys" class="icon" onclick="captureMediaKeys();" alt="Capture keyboard's media keys" src="../Content/off.png" data-tooltip="Capture keyboard's media keys" />
+    </div>
+    <script src="deeCtrl.js"></script>
+</body>
+</html>
