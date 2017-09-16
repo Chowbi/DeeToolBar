@@ -24,6 +24,12 @@ function execute(request, sender, callback) {
         case 'Volume Up':
             volumeControl(5);
             break;
+        case 'Ban Song':
+            document.getElementsByClassName('icon icon-unlove')[0].parentElement.parentElement.click();
+            break;
+        case 'Love Song':
+            document.getElementsByClassName('icon icon-love')[0].parentElement.parentElement.click();
+            break;
         case 'getCaptureMediaKey':
             var _cmk;
             var span = document.getElementById("captureMediaKey");

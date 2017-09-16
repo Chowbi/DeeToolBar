@@ -25,9 +25,9 @@ function showMediaKeyStatus(status: boolean) {
     document.getElementById("captureKeys").setAttribute("src", src);
 }
 
-chrome.commands.getAll(function (commands) {
-    commands.forEach(function (command) {
-        if (command.description == "MediaPlayPause")
-            command.shortcut = "Ctrl+Shift+U";
-    });
-});
+//chrome.commands.getAll(function (commands) {
+//    commands.forEach(function (command) {
+//        if (command.description == "MediaPlayPause")
+//            command.shortcut = "Ctrl+Shift+U";
+//    });
+//});
