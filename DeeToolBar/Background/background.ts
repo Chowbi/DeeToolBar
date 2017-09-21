@@ -36,7 +36,7 @@ function reactOnKeyboard(command) {
             actOnDeezerTab("Play");
             break;
         case "MediaStop":
-            actOnDeezerTab("Pause");
+            actOnDeezerTab("Ban song");
             break;
     }
 }
@@ -62,9 +62,11 @@ function saveOptions(e) {
 
 function restoreOptions() {
     chrome.storage.local.get('colour', (res) => {
-        document.getElementById("colour")["value"] = res["colour"]
+        if (res["colour"] == null)
+            res["colour"] = "white";
+        document.getElementById("colour")["value"] = res["colour"];
     });
 }
 
 document.addEventListener('DOMContentLoaded', restoreOptions);
-document.querySelector("form").addEventListener("submit", saveOptions);
+document.querySelector("#form").addEventListener("submit", saveOptions);

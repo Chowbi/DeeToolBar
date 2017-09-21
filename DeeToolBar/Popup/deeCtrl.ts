@@ -6,14 +6,15 @@ chrome.storage.local.get('colour', (res) => {
 
 document.addEventListener("click", function (e: MouseEvent) {
     var id = e.target['id'];
-    var alt = e.target['alt'];
+    var alt = e.target['data-action'];
+    alert("this " + JSON.stringify(this) + "\ne" + JSON.stringify(e));
     if (id == 'captureKeys')
         chrome.runtime.sendMessage({ action: 'toogleMediaKey' }, (result: boolean) => {
             showMediaKeyStatus(result);
         });
     else
         chrome.runtime.sendMessage({ action: alt });
-});
+}, false);
 
 chrome.runtime.sendMessage({ action: 'getMediaKey' }, (result: boolean) => {
     showMediaKeyStatus(result);
