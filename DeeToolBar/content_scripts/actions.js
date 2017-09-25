@@ -15,22 +15,22 @@ function execute(request, sender, callback) {
         case 'Next':
             document.getElementsByClassName('control control-next')[0].click();
             break;
-        case 'Previous':
+        case 'Prev':
             document.getElementsByClassName('control control-prev')[0].click();
             break;
-        case 'Volume Down':
+        case 'VolDown':
             volumeControl(-5);
             break;
-        case 'Volume Up':
+        case 'VolUp':
             volumeControl(5);
             break;
-        case 'Ban Song':
+        case 'Ban':
             document.getElementsByClassName('icon icon-unlove')[0].parentElement.parentElement.click();
             break;
-        case 'Love Song':
+        case 'Love':
             document.getElementsByClassName('icon icon-love')[0].parentElement.parentElement.click();
             break;
-        case 'getCaptureMediaKey':
+        case 'Shortcuts':
             var _cmk;
             var span = document.getElementById("captureMediaKey");
             if (span == null) {

@@ -18,7 +18,8 @@
   "browser_action": {
     "default_icon": "Content/deezer-icon.png",
     "default_title": "DeezerToolbar",
-    "default_popup": "Popup/DeeCtrl.html"
+    "default_popup": "Popup/DeeCtrl.html",
+    "scripts": [ "Popup/DeeCtrl.js" ]
   },
 
   "options_ui": {
@@ -64,12 +65,6 @@
       "description": "MediaPlayPause",
       "suggested_key": {
         "default": "Ctrl+Up"
-      }
-    },
-    "MediaStop": {
-      "description": "MediaStop",
-      "suggested_key": {
-        "default": "Ctrl+Down"
       }
     }
   }

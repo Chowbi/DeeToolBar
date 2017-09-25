@@ -1,4 +1,7 @@
-﻿chrome.runtime.onMessage.addListener(controller);
+﻿
+declare var browser;
+
+browser.runtime.onMessage.addListener(controller);
 
 let _captureMediaKeys: boolean;
 
@@ -16,10 +19,10 @@ function captureMediaKeys(callback) {
         _captureMediaKeys = false;
     _captureMediaKeys = !_captureMediaKeys;
     if (_captureMediaKeys) {
-        chrome.commands.onCommand.addListener(reactOnKeyboard);
+        browser.commands.onCommand.addListener(reactOnKeyboard);
     }
     else {
-        chrome.commands.onCommand.removeListener(reactOnKeyboard);
+        browser.commands.onCommand.removeListener(reactOnKeyboard);
     }
     callback(_captureMediaKeys);
 }
@@ -35,38 +38,44 @@ function reactOnKeyboard(command) {
         case "MediaPlayPause":
             actOnDeezerTab("Play");
             break;
-        case "MediaStop":
-            actOnDeezerTab("Ban song");
-            break;
     }
 }
 
 function actOnDeezerTab(action: string) {
-    chrome.tabs.query({ url: "*://*.deezer.com/*" }, function (tabs) {
+    browser.tabs.query({ url: "*://*.deezer.com/*" }, function (tabs) {
         if (tabs.length == 0)
-            chrome.tabs.create({ url: "http://www.deezer.com/login", active: true });
+            browser.tabs.create({ url: "http://www.deezer.com/login", active: true });
         else {
             let id: number = tabs[0].id;
             if (action == 'Playlist')
-                chrome.tabs.update(id, { active: true });
-            chrome.tabs.sendMessage(id, { execute: action });
+                browser.tabs.update(id, { active: true });
+            browser.tabs.sendMessage(id, { execute: action });
         }
     });
 }
 
 function saveOptions(e) {
-    chrome.storage.local.set({
+    browser.storage.local.set({
         colour: document.getElementById("colour")["value"]
     });
 }
-
 function restoreOptions() {
-    chrome.storage.local.get('colour', (res) => {
+    console.log("Browser : " + JSON.stringify(browser.storage));
+    console.log("Chrome : " + JSON.stringify(chrome.storage));
+    console.log("Diff : " + (browser == chrome) + "; " + (browser === chrome));
+    browser.storage.local.get('colour', (res) => {
         if (res["colour"] == null)
             res["colour"] = "white";
-        document.getElementById("colour")["value"] = res["colour"];
+        console.log("restoring color option");
+        let colElt = document.getElementById("colour");
+        let color = res["colour"];
+        console.log(JSON.stringify(colElt));
+        console.log(color);
+        //["value"] = res["colour"]
+        console.log("color option restored");
     });
 }
 
 document.addEventListener('DOMContentLoaded', restoreOptions);
-document.querySelector("#form").addEventListener("submit", saveOptions);
+document.addEventListener('DOMContentLoaded', () =>
+    document.querySelector("#form").addEventListener("submit", saveOptions));

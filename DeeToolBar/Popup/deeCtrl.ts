@@ -4,17 +4,25 @@ chrome.storage.local.get('colour', (res) => {
     document.getElementById("popupBody").setAttribute("style", "background-color:" + res["colour"] + ";")
 });
 
-document.addEventListener("click", function (e: MouseEvent) {
-    var id = e.target['id'];
-    var alt = e.target['data-action'];
-    alert("this " + JSON.stringify(this) + "\ne" + JSON.stringify(e));
-    if (id == 'captureKeys')
+function actOnTab(action: string) {
+    if (action == 'Shortcuts')
         chrome.runtime.sendMessage({ action: 'toogleMediaKey' }, (result: boolean) => {
             showMediaKeyStatus(result);
         });
     else
-        chrome.runtime.sendMessage({ action: alt });
-}, false);
+        chrome.runtime.sendMessage({ action: action });
+}
+
+document.addEventListener('click', eventHandler);
+
+function eventHandler(event: MouseEvent) {
+    console.log(JSON.stringify(event));
+    //let divs: string[] = ["VolUp", "VolDown", "Play", "Playlist", "Prev", "Next", "Love", "Ban", "Shortcuts"];
+    //for (let d of divs) {
+    //    console.log(d);
+    //    document.getElementById("#" + d).addEventListener("click", () => actOnTab(d));
+    //}
+}
 
 chrome.runtime.sendMessage({ action: 'getMediaKey' }, (result: boolean) => {
     showMediaKeyStatus(result);
@@ -23,12 +31,5 @@ chrome.runtime.sendMessage({ action: 'getMediaKey' }, (result: boolean) => {
 function showMediaKeyStatus(status: boolean) {
     var src = "../Content/";
     src += status ? "on.png" : "off.png";
-    document.getElementById("captureKeys").setAttribute("src", src);
+    document.getElementById("Shortcuts").setAttribute("src", src);
 }
-
-//chrome.commands.getAll(function (commands) {
-//    commands.forEach(function (command) {
-//        if (command.description == "MediaPlayPause")
-//            command.shortcut = "Ctrl+Shift+U";
-//    });
-//});
