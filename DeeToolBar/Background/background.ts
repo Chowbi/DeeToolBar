@@ -3,55 +3,48 @@ declare var browser;
 
 browser.runtime.onMessage.addListener(controller);
 
-let _captureMediaKeys: boolean;
+let _captureMediaKeys: boolean = false;
 
 function controller(request, sender, callback) {
-    if (request.action == "toogleMediaKey")
-        captureMediaKeys(callback);
-    else if (request.action == "getMediaKey")
-        callback(_captureMediaKeys);
-    else
-        actOnDeezerTab(request.action);
+    switch (request.action) {
+        case "Shortcuts":
+            captureMediaKeys(callback);
+            break;
+        case "ShortcutsStatus":
+            callback(_captureMediaKeys);
+            break;
+        default:
+            actOnDeezerTab(request.action, callback);
+            break;
+    }
 }
 
 function captureMediaKeys(callback) {
-    if (_captureMediaKeys == null)
-        _captureMediaKeys = false;
     _captureMediaKeys = !_captureMediaKeys;
-    if (_captureMediaKeys) {
+    if (_captureMediaKeys)
         browser.commands.onCommand.addListener(reactOnKeyboard);
-    }
-    else {
+    else
         browser.commands.onCommand.removeListener(reactOnKeyboard);
-    }
     callback(_captureMediaKeys);
 }
 
 function reactOnKeyboard(command) {
-    switch (command) {
-        case "MediaPrevTrack":
-            actOnDeezerTab("Previous");
-            break;
-        case "MediaNextTrack":
-            actOnDeezerTab("Next");
-            break;
-        case "MediaPlayPause":
-            actOnDeezerTab("Play");
-            break;
-    }
+    actOnDeezerTab(command);
 }
 
-function actOnDeezerTab(action: string) {
+function actOnDeezerTab(action: string, callback = null) {
     browser.tabs.query({ url: "*://*.deezer.com/*" }, function (tabs) {
+        let id: number;
         if (tabs.length == 0)
             browser.tabs.create({ url: "http://www.deezer.com/login", active: true });
         else {
-            let id: number = tabs[0].id;
+            id = tabs[0].id;
             if (action == 'Playlist')
                 browser.tabs.update(id, { active: true });
-            browser.tabs.sendMessage(id, { execute: action });
+            browser.tabs.sendMessage(id, { execute: action }, null, callback);
         }
     });
+
 }
 
 function saveOptions(e) {
@@ -60,19 +53,10 @@ function saveOptions(e) {
     });
 }
 function restoreOptions() {
-    console.log("Browser : " + JSON.stringify(browser.storage));
-    console.log("Chrome : " + JSON.stringify(chrome.storage));
-    console.log("Diff : " + (browser == chrome) + "; " + (browser === chrome));
     browser.storage.local.get('colour', (res) => {
         if (res["colour"] == null)
             res["colour"] = "white";
-        console.log("restoring color option");
-        let colElt = document.getElementById("colour");
-        let color = res["colour"];
-        console.log(JSON.stringify(colElt));
-        console.log(color);
-        //["value"] = res["colour"]
-        console.log("color option restored");
+        document.querySelector('#colour').textContent = res["colour"];
     });
 }
 

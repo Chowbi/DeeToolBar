@@ -48,7 +48,6 @@
     <Content Include="content_scripts\actions.js" />
     <Content Include="content_scripts\jquery-2.1.4.min.js" />
     <Content Include="content_scripts\jquery-ui.min.js" />
-    <Content Include="content_scripts\jquery.simulate.js" />
     <Content Include="Popup\bootstrap.css" />
     <Content Include="Popup\DeeCtrl.html" />
     <TypeScriptCompile Include="Popup\deeCtrl.ts" />

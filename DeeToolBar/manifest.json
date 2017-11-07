@@ -18,8 +18,7 @@
   "browser_action": {
     "default_icon": "Content/deezer-icon.png",
     "default_title": "DeezerToolbar",
-    "default_popup": "Popup/DeeCtrl.html",
-    "scripts": [ "Popup/DeeCtrl.js" ]
+    "default_popup": "Popup/DeeCtrl.html"
   },
 
   "options_ui": {
@@ -36,7 +35,6 @@
       "js": [
         "content_scripts/jquery-2.1.4.min.js",
         "content_scripts/jquery-ui.min.js",
-        "content_scripts/jquery.simulate.js",
         "content_scripts/actions.js"
       ]
     }
