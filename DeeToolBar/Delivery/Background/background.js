@@ -1,4 +1,4 @@
-chrome.runtime.onMessage.addListener(controller);
+browser.runtime.onMessage.addListener(controller);
 var _captureMediaKeys;
 function controller(request, sender, callback) {
     if (request.action == "toogleMediaKey")
@@ -13,10 +13,10 @@ function captureMediaKeys(callback) {
         _captureMediaKeys = false;
     _captureMediaKeys = !_captureMediaKeys;
     if (_captureMediaKeys) {
-        chrome.commands.onCommand.addListener(reactOnKeyboard);
+        browser.commands.onCommand.addListener(reactOnKeyboard);
     }
     else {
-        chrome.commands.onCommand.removeListener(reactOnKeyboard);
+        browser.commands.onCommand.removeListener(reactOnKeyboard);
     }
     callback(_captureMediaKeys);
 }
@@ -37,24 +37,24 @@ function reactOnKeyboard(command) {
     }
 }
 function actOnDeezerTab(action) {
-    chrome.tabs.query({ url: "*://*.deezer.com/*" }, function (tabs) {
+    browser.tabs.query({ url: "*://*.deezer.com/*" }, function (tabs) {
         if (tabs.length == 0)
-            chrome.tabs.create({ url: "http://www.deezer.com/login", active: true });
+            browser.tabs.create({ url: "http://www.deezer.com/login", active: true });
         else {
             var id = tabs[0].id;
             if (action == 'Playlist')
-                chrome.tabs.update(id, { active: true });
-            chrome.tabs.sendMessage(id, { execute: action });
+                browser.tabs.update(id, { active: true });
+            browser.tabs.sendMessage(id, { execute: action });
         }
     });
 }
 function saveOptions(e) {
-    chrome.storage.local.set({
+    browser.storage.local.set({
         colour: document.getElementById("colour")["value"]
     });
 }
 function restoreOptions() {
-    chrome.storage.local.get('colour', function (res) {
+    browser.storage.local.get('colour', function (res) {
         document.getElementById("colour")["value"] = res["colour"];
     });
 }

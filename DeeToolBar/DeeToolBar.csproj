@@ -24,9 +24,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Background\background.ts" />
-    <TypeScriptCompile Include="typings\chrome.d.ts" />
-    <TypeScriptCompile Include="typings\filesystem.d.ts" />
-    <TypeScriptCompile Include="typings\MediaStream.d.ts" />
+    <TypeScriptCompile Include="Background\options.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Background\options.html" />
@@ -46,16 +44,12 @@
     <Content Include="Content\volDown.png" />
     <Content Include="Content\volUp.png" />
     <Content Include="content_scripts\actions.js" />
-    <Content Include="content_scripts\jquery-2.1.4.min.js" />
-    <Content Include="content_scripts\jquery-ui.min.js" />
-    <Content Include="Popup\bootstrap.css" />
     <Content Include="Popup\DeeCtrl.html" />
     <TypeScriptCompile Include="Popup\deeCtrl.ts" />
     <Content Include="Popup\style.css" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="manifest.json" />
-    <Content Include="manifest.json.bak" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
   </ItemGroup>
   <ItemGroup>

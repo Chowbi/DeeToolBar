@@ -3,36 +3,37 @@ declare var browser;
 
 browser.runtime.onMessage.addListener(controller);
 
-let _captureMediaKeys: boolean = false;
+let _isShorcutsActive: boolean = false;
 
 function controller(request, sender, callback) {
+    if (request.action == 'LikeStatus')
+        callback(true);
     switch (request.action) {
         case "Shortcuts":
-            captureMediaKeys(callback);
+            switchShortcutActive(callback);
             break;
         case "ShortcutsStatus":
-            callback(_captureMediaKeys);
+            callback(_isShorcutsActive);
             break;
         default:
-            actOnDeezerTab(request.action, callback);
-            break;
+            return actOnDeezerTab(request.action);
     }
 }
 
-function captureMediaKeys(callback) {
-    _captureMediaKeys = !_captureMediaKeys;
-    if (_captureMediaKeys)
+function switchShortcutActive(callback) {
+    _isShorcutsActive = !_isShorcutsActive;
+    if (_isShorcutsActive)
         browser.commands.onCommand.addListener(reactOnKeyboard);
     else
         browser.commands.onCommand.removeListener(reactOnKeyboard);
-    callback(_captureMediaKeys);
+    callback(_isShorcutsActive);
 }
 
 function reactOnKeyboard(command) {
     actOnDeezerTab(command);
 }
 
-function actOnDeezerTab(action: string, callback = null) {
+function actOnDeezerTab(action: string) {
     browser.tabs.query({ url: "*://*.deezer.com/*" }, function (tabs) {
         let id: number;
         if (tabs.length == 0)
@@ -41,25 +42,12 @@ function actOnDeezerTab(action: string, callback = null) {
             id = tabs[0].id;
             if (action == 'Playlist')
                 browser.tabs.update(id, { active: true });
-            browser.tabs.sendMessage(id, { execute: action }, null, callback);
+            browser.tabs.sendMessage(id, { execute: action }).then((result, error) => sendMessage(action, result, error));
         }
     });
-
 }
 
-function saveOptions(e) {
-    browser.storage.local.set({
-        colour: document.getElementById("colour")["value"]
-    });
+function sendMessage(action: string, result, error) {
+    if (action == 'Like' || action == 'LikeStatus')
+        browser.runtime.sendMessage(result);
 }
-function restoreOptions() {
-    browser.storage.local.get('colour', (res) => {
-        if (res["colour"] == null)
-            res["colour"] = "white";
-        document.querySelector('#colour').textContent = res["colour"];
-    });
-}
-
-document.addEventListener('DOMContentLoaded', restoreOptions);
-document.addEventListener('DOMContentLoaded', () =>
-    document.querySelector("#form").addEventListener("submit", saveOptions));

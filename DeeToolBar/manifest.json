@@ -26,15 +26,16 @@
   },
 
   "background": {
-    "scripts": [ "Background/background.js" ]
+    "scripts": [
+      "Background/background.js",
+      "Background/options.js"
+    ]
   },
 
   "content_scripts": [
     {
       "matches": [ "*://*.deezer.com/*" ],
       "js": [
-        "content_scripts/jquery-2.1.4.min.js",
-        "content_scripts/jquery-ui.min.js",
         "content_scripts/actions.js"
       ]
     }

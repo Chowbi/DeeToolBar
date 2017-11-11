@@ -1,4 +1,4 @@
-chrome.runtime.onMessage.addListener(execute);
+browser.runtime.onMessage.addListener(execute);
 
 
 function execute(request, sender, callback) {

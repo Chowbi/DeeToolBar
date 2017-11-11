@@ -1,4 +1,4 @@
-chrome.runtime.onMessage.addListener(execute);
+browser.runtime.onMessage.addListener(execute);
 
 
 function execute(request, sender, callback) {
@@ -22,14 +22,14 @@ function execute(request, sender, callback) {
             document.getElementsByClassName('svg-icon-cancel')[0].parentElement.click();
             break;
         case 'Like':
-            var like = document.getElementsByClassName('svg-icon-love-outline')[0];
-            like.parentElement.click();
-            callback(like.className.indexOf('is-active') != -1);
-            break;
         case 'LikeStatus':
             var like = document.getElementsByClassName('svg-icon-love-outline')[0];
-            callback(like.className.indexOf('is-active') != -1);
-            break;
+            var status = like.classList.value.indexOf('is-active') != -1;
+            if (request.execute == "Like") {
+                like.parentElement.click();
+                status = !status;
+            }
+            callback(status);
     }
 }
 

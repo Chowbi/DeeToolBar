@@ -1,6 +1,6 @@
-///<reference path="../typings/chrome.d.ts"/>
+declare var browser;
 
-chrome.storage.local.get('colour', (res) => {
+browser.storage.local.get('colour', (res) => {
     document.getElementById("popupBody").setAttribute("style", "background-color:" + res["colour"] + ";")
 });
 
@@ -8,28 +8,32 @@ document.addEventListener("click", function (e: MouseEvent) {
     var id = e.target['id'];
     switch (id) {
         case 'Shortcuts':
-            chrome.runtime.sendMessage({ action: id }, (result: boolean) => showShortcutsStatus(result));
+            browser.runtime.sendMessage({ action: id }).then(UpdateShortcutsStatus);
             break;
         case 'Like':
-            chrome.runtime.sendMessage({ action: id }, (result: boolean) => showLikeStatus(result));
+            browser.runtime.sendMessage({ action: id });
             break;
         default:
-            chrome.runtime.sendMessage({ action: id });
+            browser.runtime.sendMessage({ action: id });
             break;
     }
 });
 
-chrome.runtime.sendMessage({ action: 'ShortcutsStatus' }, (result: boolean) => showShortcutsStatus(result));
-chrome.runtime.sendMessage({ action: 'LikeStatus' }, (result: boolean) => showLikeStatus(result));
+browser.runtime.onMessage.addListener(UpdateLikeStatus);
+browser.runtime.sendMessage({ action: 'ShortcutsStatus' }).then(UpdateShortcutsStatus);
+browser.runtime.sendMessage({ action: 'LikeStatus' });
 
-function showShortcutsStatus(status: boolean) {
+
+function UpdateShortcutsStatus(status) {
     var src = "../Content/";
     src += status ? "on.png" : "off.png";
     document.getElementById("Shortcuts").setAttribute("src", src);
 }
 
-function showLikeStatus(status: boolean) {
+function UpdateLikeStatus(status) {
     var src = "../Content/";
     src += status ? "liked.png" : "notLiked.png";
     document.getElementById("Like").setAttribute("src", src);
 }
+
+
