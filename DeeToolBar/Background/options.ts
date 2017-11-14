@@ -13,5 +13,12 @@ function restoreOptions() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', restoreOptions);
-document.querySelector("form").addEventListener("submit", saveOptions);
+function addListener() {
+    document.querySelector("form").addEventListener("submit", saveOptions);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    restoreOptions();
+    addListener();
+});
+

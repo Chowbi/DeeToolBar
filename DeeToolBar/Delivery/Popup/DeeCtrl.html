@@ -7,19 +7,16 @@
 </head>
 
 <body id="popupBody">
-    <div>
-        <div class="icon">
-            <img class="volume" onclick="volUp();" alt="Volume Up" src="../Content/volUp.png" data-tooltip="Volume Up" />
-            <img class="volume" onclick="volDown();" alt="Volume Down" src="../Content/volDown.png" data-tooltip="Volume Down" />
-        </div>
-        <img class="icon" onclick="play();" alt="Play" src="../Content/playpause.png" data-tooltip="Play" />
-        <!--<img class="icon" onclick="pause();" alt="Pause" src="../Content/pause.png" data-tooltip="Pause" />-->
-        <img class="icon" onclick="playlist();" alt="Playlist" src="../Content/playlist.png" data-tooltip="Show playlist" />
-        <img class="icon" onclick="previous();" alt="Previous" src="../Content/prev.png" data-tooltip="Previous" />
-        <img class="icon" onclick="next();" alt="Next" src="../Content/next.png" data-tooltip="Next" />
-        <div class="icon">|</div>
-        <img id="captureKeys" class="icon" onclick="captureMediaKeys();" alt="Capture keyboard's media keys" src="../Content/off.png" data-tooltip="Capture keyboard's media keys" />
+    <div class="icon">
+        <img title="Love song" alt="Love song" id="Like" class="volume" src="../Content/notLiked.png" />
+        <img title="Ban song" alt="Ban song" id="Ban" class="volume" src="../Content/ban.png" />
     </div>
+    <img title="Play" alt="Play" id="Play" class="icon" src="../Content/playpause.png" />
+    <img title="Show playlist" alt="Show playlist" id="Playlist" class="icon" src="../Content/playlist.png" />
+    <img title="Previous" alt="Previous" id="Prev" class="icon" src="../Content/prev.png" />
+    <img title="Next" alt="Next" id="Next" class="icon" src="../Content/next.png" />
+    <div class="icon">|</div>
+    <img title="Capture keyboard's shortcuts" alt="Shortcuts" id="Shortcuts" class="icon" src="../Content/off.png" />
     <script src="deeCtrl.js"></script>
 </body>
 </html>
