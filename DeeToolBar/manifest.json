@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "DeeToolbar",
-  "version": "1.2",
+  "name": "DeezerToolbar",
+  "version": "1.4",
 
-  "description": "Adds a browser action icon to the toolbar to take control of deezer tab. ",
+  "description": "Adds a browser action icon to the toolbar to take control of deezer tab.",
 
   "icons": {
     "48": "Content/play.png",
@@ -17,25 +17,25 @@
 
   "browser_action": {
     "default_icon": "Content/deezer-icon.png",
-    "default_title": "DeeToolbar",
+    "default_title": "DeezerToolbar",
     "default_popup": "Popup/DeeCtrl.html"
-  },
-
-  "background": {
-    "scripts": [ "Background/background.js" ]
   },
 
   "options_ui": {
     "page": "Background/options.html"
   },
 
+  "background": {
+    "scripts": [
+      "Background/background.js",
+      "Background/options.js"
+    ]
+  },
+
   "content_scripts": [
     {
       "matches": [ "*://*.deezer.com/*" ],
       "js": [
-        "content_scripts/jquery-2.1.4.min.js",
-        "content_scripts/jquery-ui.min.js",
-        "content_scripts/jquery.simulate.js",
         "content_scripts/actions.js"
       ]
     }
@@ -51,25 +51,25 @@
     "MediaPrevTrack": {
       "description": "MediaPrevTrack",
       "suggested_key": {
-        "default": "Ctrl+Left"
+        "default": "Ctrl+Shift+Left"
       }
     },
     "MediaNextTrack": {
       "description": "MediaNextTrack",
       "suggested_key": {
-        "default": "Ctrl+Right"
+        "default": "Ctrl+Shift+Right"
       }
     },
     "MediaPlayPause": {
       "description": "MediaPlayPause",
       "suggested_key": {
-        "default": "Ctrl+Up"
+        "default": "Ctrl+Shift+Up"
       }
     },
-    "MediaStop": {
-      "description": "MediaStop",
+    "Like": {
+      "description": "Like",
       "suggested_key": {
-        "default": "Ctrl+Down"
+        "default": "Ctrl+Shift+Down"
       }
     }
   }

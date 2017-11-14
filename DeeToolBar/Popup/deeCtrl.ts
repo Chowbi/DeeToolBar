@@ -1,33 +1,39 @@
-///<reference path="../typings/chrome.d.ts"/>
+declare var browser;
 
-chrome.storage.local.get('colour', (res) => {
+browser.storage.local.get('colour', (res) => {
     document.getElementById("popupBody").setAttribute("style", "background-color:" + res["colour"] + ";")
 });
 
 document.addEventListener("click", function (e: MouseEvent) {
     var id = e.target['id'];
-    var alt = e.target['alt'];
-    if (id == 'captureKeys')
-        chrome.runtime.sendMessage({ action: 'toogleMediaKey' }, (result: boolean) => {
-            showMediaKeyStatus(result);
-        });
-    else
-        chrome.runtime.sendMessage({ action: alt });
+    switch (id) {
+        case 'Shortcuts':
+            browser.runtime.sendMessage({ action: id }).then(UpdateShortcutsStatus);
+            break;
+        case 'Like':
+            browser.runtime.sendMessage({ action: id });
+            break;
+        default:
+            browser.runtime.sendMessage({ action: id });
+            break;
+    }
 });
 
-chrome.runtime.sendMessage({ action: 'getMediaKey' }, (result: boolean) => {
-    showMediaKeyStatus(result);
-});
+browser.runtime.onMessage.addListener(UpdateLikeStatus);
+browser.runtime.sendMessage({ action: 'ShortcutsStatus' }).then(UpdateShortcutsStatus);
+browser.runtime.sendMessage({ action: 'LikeStatus' });
 
-function showMediaKeyStatus(status: boolean) {
+
+function UpdateShortcutsStatus(status) {
     var src = "../Content/";
     src += status ? "on.png" : "off.png";
-    document.getElementById("captureKeys").setAttribute("src", src);
+    document.getElementById("Shortcuts").setAttribute("src", src);
 }
 
-chrome.commands.getAll(function (commands) {
-    commands.forEach(function (command) {
-        if (command.description == "MediaPlayPause")
-            command.shortcut = "Ctrl+Shift+U";
-    });
-});
+function UpdateLikeStatus(status) {
+    var src = "../Content/";
+    src += status ? "liked.png" : "notLiked.png";
+    document.getElementById("Like").setAttribute("src", src);
+}
+
+

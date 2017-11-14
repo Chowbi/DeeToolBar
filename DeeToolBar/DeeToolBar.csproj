@@ -10,48 +10,46 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
-    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.4</TypeScriptToolsVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Background\background.ts" />
-    <TypeScriptCompile Include="typings\chrome.d.ts" />
-    <TypeScriptCompile Include="typings\filesystem.d.ts" />
-    <TypeScriptCompile Include="typings\MediaStream.d.ts" />
+    <TypeScriptCompile Include="Background\options.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Background\options.html" />
+    <Content Include="Content\ban.png" />
     <Content Include="Content\deezer-icon.png" />
+    <Content Include="Content\liked.png" />
     <Content Include="Content\next.png" />
+    <Content Include="Content\notLiked.png" />
     <Content Include="Content\off.png" />
     <Content Include="Content\on.png" />
     <Content Include="Content\pause.png" />
     <Content Include="Content\play.png" />
     <Content Include="Content\playlist.png" />
+    <Content Include="Content\playpause.png" />
     <Content Include="Content\prev.png" />
     <Content Include="Content\preview.png" />
     <Content Include="Content\volDown.png" />
     <Content Include="Content\volUp.png" />
     <Content Include="content_scripts\actions.js" />
-    <Content Include="content_scripts\jquery-2.1.4.min.js" />
-    <Content Include="content_scripts\jquery-simulator.js" />
-    <Content Include="content_scripts\jquery-ui.min.js" />
-    <Content Include="Popup\bootstrap.css" />
     <Content Include="Popup\DeeCtrl.html" />
     <TypeScriptCompile Include="Popup\deeCtrl.ts" />
     <Content Include="Popup\style.css" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="manifest.json" />
-    <Content Include="manifest.json.bak" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
   </ItemGroup>
   <ItemGroup>
