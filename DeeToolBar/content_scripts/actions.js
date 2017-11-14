@@ -24,8 +24,8 @@ function execute(request, sender, callback) {
         case 'Like':
         case 'LikeStatus':
             var like = document.getElementsByClassName('svg-icon-love-outline')[0];
-            var status = like.classList.value.indexOf('is-active') != -1;
-            if (request.execute == "Like") {
+            var status = like.classList.value.indexOf('is-active') !== -1;
+            if (request.execute === "Like") {
                 like.parentElement.click();
                 status = !status;
             }

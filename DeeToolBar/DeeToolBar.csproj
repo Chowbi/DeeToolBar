@@ -41,8 +41,6 @@
     <Content Include="Content\playpause.png" />
     <Content Include="Content\prev.png" />
     <Content Include="Content\preview.png" />
-    <Content Include="Content\volDown.png" />
-    <Content Include="Content\volUp.png" />
     <Content Include="content_scripts\actions.js" />
     <Content Include="Popup\DeeCtrl.html" />
     <TypeScriptCompile Include="Popup\deeCtrl.ts" />
