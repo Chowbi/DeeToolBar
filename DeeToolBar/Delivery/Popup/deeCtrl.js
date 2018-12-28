@@ -1,3 +1,4 @@
+"use strict";
 browser.storage.local.get('colour', function (res) {
     document.getElementById("popupBody").setAttribute("style", "background-color:" + res["colour"] + ";");
 });
@@ -28,4 +29,3 @@ function UpdateLikeStatus(status) {
     src += status ? "liked.png" : "notLiked.png";
     document.getElementById("Like").setAttribute("src", src);
 }
-//# sourceMappingURL=deeCtrl.js.map

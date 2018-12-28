@@ -1,3 +1,4 @@
+"use strict";
 browser.runtime.onMessage.addListener(controller);
 var _isShorcutsActive = false;
 function controller(request, sender, callback) {
@@ -42,4 +43,3 @@ function sendMessage(action, result, error) {
     if (action == 'Like' || action == 'LikeStatus')
         browser.runtime.sendMessage(result);
 }
-//# sourceMappingURL=background.js.map
