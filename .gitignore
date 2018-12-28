@@ -1,5 +1,4 @@
 /DeeToolBar/obj
 /DeeToolBar/bin
-/DeeToolBar/Background/*.map
 *.map
-*.js
+node_modules
