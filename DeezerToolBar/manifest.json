@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "DeezerToolbar",
-  "version": "1.4",
+  "version": "2.0",
 
   "description": "Adds a browser action icon to the toolbar to take control of deezer tab.",
 
@@ -51,25 +51,25 @@
     "MediaPrevTrack": {
       "description": "MediaPrevTrack",
       "suggested_key": {
-        "default": "Ctrl+Shift+Left"
+        "default": "Ctrl+Shift+V"
       }
     },
     "MediaNextTrack": {
       "description": "MediaNextTrack",
       "suggested_key": {
-        "default": "Ctrl+Shift+Right"
+        "default": "Ctrl+Shift+F"
       }
     },
     "MediaPlayPause": {
       "description": "MediaPlayPause",
       "suggested_key": {
-        "default": "Ctrl+Shift+Up"
+        "default": "Ctrl+Shift+Space"
       }
     },
     "Like": {
       "description": "Like",
       "suggested_key": {
-        "default": "Ctrl+Shift+Down"
+        "default": "Ctrl+Shift+L"
       }
     }
   }

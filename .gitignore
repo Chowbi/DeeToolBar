@@ -1,5 +1,6 @@
-/DeeToolBar/obj
-/DeeToolBar/bin
-/DeeToolBar/Background/*.map
+/DeezerToolBar/obj
+/DeezerToolBar/bin
 *.map
 *.js
+node_modules
+.vs
