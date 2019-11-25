@@ -16,7 +16,7 @@
     "deezer",
     "addon"
   ],
-  "author": "Chowbi, kliput",
+  "author": [ "Chowbi, kliput", "danger89" ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Chowbi/DeeToolBar/issues"

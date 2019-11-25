@@ -4,3 +4,6 @@
 *.js
 node_modules
 .vs
+/README.txt
+/package-lock.json
+/Delivery
