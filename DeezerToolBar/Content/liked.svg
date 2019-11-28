@@ -18,8 +18,8 @@
    class="feather feather-heart"
    version="1.1"
    id="svg4"
-   sodipodi:docname="heart_solid.svg"
-   inkscape:export-filename="C:\Users\melberg\Pictures\icons\heart.png"
+   sodipodi:docname="liked.svg"
+   inkscape:export-filename="C:\Users\melberg\Pictures\icons\liked.png"
    inkscape:export-xdpi="200"
    inkscape:export-ydpi="200"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
@@ -31,7 +31,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -51,9 +51,9 @@
      id="namedview6"
      showgrid="false"
      inkscape:zoom="39.333333"
-     inkscape:cx="10.877771"
+     inkscape:cx="6.6320083"
      inkscape:cy="14.328766"
-     inkscape:window-x="2391"
+     inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg4" />
