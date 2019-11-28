@@ -49,22 +49,23 @@
      inkscape:window-height="1271"
      id="namedview8"
      showgrid="false"
-     inkscape:zoom="9.8333333"
-     inkscape:cx="12"
-     inkscape:cy="12"
+     inkscape:zoom="27.812867"
+     inkscape:cx="6.191021"
+     inkscape:cy="12.463508"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg6" />
   <polygon
-     points="5 4 15 12 5 20 5 4"
+     points="15,12 5,20 5,4 "
      id="polygon2"
-     style="stroke:#4e8470;stroke-opacity:1" />
+     style="stroke:#4e8470;stroke-opacity:1"
+     transform="matrix(0.88614325,0,0,0.88614325,0.2756545,1.1685236)" />
   <line
-     x1="19"
-     y1="5"
-     x2="19"
-     y2="19"
+     x1="17.705635"
+     y1="4.928091"
+     x2="17.705635"
+     y2="18.928091"
      id="line4"
      style="stroke:#4e8470;stroke-opacity:1" />
 </svg>
