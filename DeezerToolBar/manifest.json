@@ -16,7 +16,7 @@
   },
 
   "browser_action": {
-    "default_icon": "Content/deezer-icon.png",
+    "default_icon": "Content/deezer-icon-sm-transparent.png",
     "default_title": "DeezerToolbar",
     "default_popup": "Popup/DeeCtrl.html"
   },
