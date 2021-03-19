@@ -1,9 +1,13 @@
 ﻿"use strict";
 declare var browser;
 
-browser.runtime.onMessage.addListener(controller);
-
 let _isShorcutsActive: boolean = false;
+
+browser.runtime.onMessage.addListener(controller);
+browser.storage.local.get('useShortcut', (res) => {
+    _isShorcutsActive = res["useShortcut"];
+});
+
 
 function controller(request, sender, callback) {
     switch (request.action) {
@@ -46,6 +50,6 @@ function actOnDeezerTab(action: string) {
 }
 
 function sendMessage(action: string, result, error) {
-    if (action == 'Like' || action = 'LikeStatus')
-    browser.runtime.sendMessage(result);
+    if (action == 'Like' || action == 'LikeStatus')
+        browser.runtime.sendMessage(result);
 }

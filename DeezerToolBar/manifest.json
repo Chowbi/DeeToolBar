@@ -57,19 +57,19 @@
     "MediaPrevTrack": {
       "description": "MediaPrevTrack",
       "suggested_key": {
-        "default": "Ctrl+Shift+V"
+        "default": "MediaPrevTrack"
       }
     },
     "MediaNextTrack": {
       "description": "MediaNextTrack",
       "suggested_key": {
-        "default": "Ctrl+Shift+F"
+        "default": "MediaNextTrack"
       }
     },
     "MediaPlayPause": {
       "description": "MediaPlayPause",
       "suggested_key": {
-        "default": "Ctrl+Shift+Space"
+        "default": "MediaPlayPause"
       }
     },
     "Like": {
