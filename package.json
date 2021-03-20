@@ -1,6 +1,6 @@
 {
   "name": "deetoolbar",
-  "version": "2.0.0",
+  "version": "2.3.0",
   "description": "Adds a browser action icon to the toolbar to take control of deezer tab.",
   "main": "index.js",
   "scripts": {

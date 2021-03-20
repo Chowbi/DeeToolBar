@@ -54,20 +54,20 @@
   ],
 
   "commands": {
-    "MediaPrevTrack": {
-      "description": "MediaPrevTrack",
+    "PrevTrack": {
+      "description": "Previous Track",
       "suggested_key": {
         "default": "MediaPrevTrack"
       }
     },
-    "MediaNextTrack": {
-      "description": "MediaNextTrack",
+    "NextTrack": {
+      "description": "Next Track",
       "suggested_key": {
         "default": "MediaNextTrack"
       }
     },
-    "MediaPlayPause": {
-      "description": "MediaPlayPause",
+    "PlayPause": {
+      "description": "Play Pause",
       "suggested_key": {
         "default": "MediaPlayPause"
       }
