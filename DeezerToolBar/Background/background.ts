@@ -2,11 +2,12 @@
 declare var browser;
 
 let _isShorcutsActive: boolean = false;
+browser.storage.local.get('useShortcut', (res) => {
+    _isShorcutsActive = !res["useShortcut"];
+    switchShortcutActive(() => { });
+});
 
 browser.runtime.onMessage.addListener(controller);
-browser.storage.local.get('useShortcut', (res) => {
-    _isShorcutsActive = res["useShortcut"];
-});
 
 
 function controller(request, sender, callback) {
@@ -50,6 +51,6 @@ function actOnDeezerTab(action: string) {
 }
 
 function sendMessage(action: string, result, error) {
-    if (action == 'Like' || action == 'LikeStatus')
+    if (action == 'Like' || action == 'Statuses')
         browser.runtime.sendMessage(result);
 }

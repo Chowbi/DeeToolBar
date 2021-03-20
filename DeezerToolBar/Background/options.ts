@@ -2,15 +2,21 @@
 
 function saveOptions(e) {
     browser.storage.local.set({
-        colour: document.querySelector("#colour")["value"],
+        background: document.querySelector("#background")["value"],
+        foreground: document.querySelector("#foreground")["value"],
         useShortcut: document.querySelector("#useShortcut")["checked"]
     });
 }
 function restoreOptions() {
-    browser.storage.local.get('colour', (res) => {
-        if (res["colour"] == null)
-            res["colour"] = "white";
-        document.querySelector('#colour')["value"] = res["colour"];
+    browser.storage.local.get('background', (res) => {
+        if (res["background"] == null)
+            res["background"] = "white";
+        document.querySelector('#background')["value"] = res["background"];
+    });
+    browser.storage.local.get('foreground', (res) => {
+        if (res["foreground"] == null)
+            res["foreground"] = "black";
+        document.querySelector('#foreground')["value"] = res["foreground"];
     });
     browser.storage.local.get('useShortcut', (res) => {
         document.querySelector('#useShortcut')["checked"] = res["useShortcut"];

@@ -1,9 +1,16 @@
 "use strict"
 declare var browser;
 
-browser.storage.local.get('colour', (res) => {
-    document.getElementById("popupBody").setAttribute("style", "background-color:" + res["colour"] + ";")
-});
+let background;
+let foreground;
+
+function setColors() {
+    document.getElementById("popupBody").setAttribute("style", "background-color:" + background + ";color:" + foreground + ";")
+}
+
+browser.storage.local.get('background', (res) => { background = res["background"]; setColors(); });
+browser.storage.local.get('foreground', (res) => { foreground = res["foreground"]; setColors(); });
+
 
 document.addEventListener("click", function (e: MouseEvent) {
     var id = e.target['id'];
@@ -17,16 +24,16 @@ document.addEventListener("click", function (e: MouseEvent) {
         default:
             browser.runtime.sendMessage({ action: id }).then(
                 () => {
-                    setTimeout(() => browser.runtime.sendMessage({ action: 'LikeStatus' })
+                    setTimeout(() => browser.runtime.sendMessage({ action: 'Statuses' })
                         , 500);
                 });
             break;
     }
 });
 
-browser.runtime.onMessage.addListener(UpdateLikeStatus);
+browser.runtime.onMessage.addListener(UpdateStatuses);
 browser.runtime.sendMessage({ action: 'ShortcutsStatus' }).then(UpdateShortcutsStatus);
-browser.runtime.sendMessage({ action: 'LikeStatus' });
+browser.runtime.sendMessage({ action: 'Statuses' });
 
 function UpdateShortcutsStatus(status) {
     var src = "../Content/";
@@ -34,10 +41,12 @@ function UpdateShortcutsStatus(status) {
     document.getElementById("Shortcuts").setAttribute("src", src);
 }
 
-function UpdateLikeStatus(status) {
+function UpdateStatuses(statuses) {
     var src = "../Content/";
-    src += status ? "liked.png" : "notLiked.png";
+    src += statuses.status ? "liked.png" : "notLiked.png";
     document.getElementById("Like").setAttribute("src", src);
+
+    document.getElementById("playing").innerText = statuses.playing;
 }
 
 
