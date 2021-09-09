@@ -7,8 +7,8 @@ function execute(request, sender, callback) {
     switch (request.execute) {
         case 'Play':
         case "PlayPause":
-            let pp = document.querySelector('.player-controls .svg-icon-play, .player-controls .svg-icon-pause');
-            pp.parentElement.click();
+            let pp = document.querySelector('.player-controls').childNodes[0];
+            pp.childNodes[2].childNodes[0].click();
             break;
         case 'Playlist':
             let openPlaylist = <HTMLElement>document.querySelector(
@@ -19,13 +19,13 @@ function execute(request, sender, callback) {
             break;
         case 'Next':
         case "NextTrack":
-            let n = document.querySelector('.player-controls .svg-icon-next');
-            n.parentElement.click();
+            let n = document.querySelector('.player-controls').childNodes[0];
+            n.childNodes[4].childNodes[0].click();
             break;
         case 'Prev':
         case "PrevTrack":
-            let p = document.querySelector('.player-controls .svg-icon-prev');
-            p.parentElement.click();
+            let p = document.querySelector('.player-controls').childNodes[0];
+            p.childNodes[0].childNodes[0].click();
             break;
         case 'Like':
         case 'Statuses':
@@ -38,12 +38,10 @@ function execute(request, sender, callback) {
 }
 
 function SetStatuses(request, callback) {
-    let like = document.querySelector(
-        '.track-actions .svg-icon-love-outline, .queuelist-cover-actions .svg-icon-love-outline'
-    );
+    let like = document.querySelectorAll('.track-actions').childNodes[0];
     var status = like.classList.value.indexOf('is-active') !== -1;
     if (request.execute === "Like") {
-        like.parentElement.click();
+        like.childNodes[2].click();
         status = !status;
     }
 
