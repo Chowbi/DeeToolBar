@@ -8,7 +8,8 @@ function execute(request, sender, callback) {
         case 'Play':
         case "PlayPause":
             let pp = document.querySelector('.player-controls').childNodes[0];
-            pp.childNodes[2].childNodes[0].click();
+            pp = pp.childNodes[2].childNodes[0];
+            (<HTMLElement>pp).click();
             break;
         case 'Playlist':
             let openPlaylist = <HTMLElement>document.querySelector(
@@ -20,12 +21,14 @@ function execute(request, sender, callback) {
         case 'Next':
         case "NextTrack":
             let n = document.querySelector('.player-controls').childNodes[0];
-            n.childNodes[4].childNodes[0].click();
+            n = n.childNodes[4].childNodes[0].childNodes[0];
+            (<HTMLElement>n).click();
             break;
         case 'Prev':
         case "PrevTrack":
             let p = document.querySelector('.player-controls').childNodes[0];
-            p.childNodes[0].childNodes[0].click();
+            p = p.childNodes[0].childNodes[0].childNodes[0];
+            (<HTMLElement>p).click();
             break;
         case 'Like':
         case 'Statuses':
@@ -38,10 +41,10 @@ function execute(request, sender, callback) {
 }
 
 function SetStatuses(request, callback) {
-    let like = document.querySelectorAll('.track-actions').childNodes[0];
-    var status = like.classList.value.indexOf('is-active') !== -1;
+    let like = <HTMLElement>document.querySelector('.track-actions').childNodes[0].childNodes[2].childNodes[0];
+    var status = like.children[0].classList.value.indexOf('eGhZom') !== -1;
     if (request.execute === "Like") {
-        like.childNodes[2].click();
+        like.click();
         status = !status;
     }
 
