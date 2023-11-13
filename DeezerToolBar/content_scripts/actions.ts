@@ -16,12 +16,12 @@ function execute(request, sender, callback) {
             break;
         case 'Next':
         case "NextTrack":
-            let n = document.querySelector("button[data-testid=SkipNextFilledIcon]");
+            let n = document.querySelector("button[data-testid=next_track_button]");
             (<HTMLElement>n)?.click();
             break;
         case 'Prev':
         case "PrevTrack":
-            let p = document.querySelector("button[data-testid=SkipBackFilledIcon]")
+            let p = document.querySelector("button[data-testid=previous_track_button]");
             (<HTMLElement>p)?.click();
             break;
         case 'Like':
@@ -35,19 +35,19 @@ function execute(request, sender, callback) {
 }
 
 function SetStatuses(request, callback) {
-    let like = <HTMLElement>document.querySelector("button[data-testid=HeartOutlinedIcon]");
-    let unLike = <HTMLElement>document.querySelector("button[data-testid=HeartFilledIcon]");
-    let liked:bool = unLike !== null;
+    let like = <HTMLElement>document.querySelector("button[data-testid=add_to_favorite_button_off]");
+    let unLike = <HTMLElement>document.querySelector("button[data-testid=add_to_favorite_button_on]");
+    let liked:Boolean = like === null;
     
     if (request.execute === "Like") {
-        (notLiked ?? like).click();
-        status = !status;
+        (like ?? unLike).click();
+        liked = !liked;
     }
 
     let elt = document.querySelector('.css-dsap3z');
 
     if (callback !== null)
-        callback({ liked, playing: elt.textContent });
+        callback({ liked, playing: (<HTMLElement>elt).innerText.split("\r").join("").split("\n").join("") });
     else
         console.debug("Callback is null");
 }
