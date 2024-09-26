@@ -47,7 +47,7 @@ function SetStatuses(request, callback) {
     let elt = document.querySelector('.css-dsap3z');
 
     if (callback !== null)
-        callback({ liked, playing: (<HTMLElement>elt).innerText.split("\r").join("").split("\n").join("") });
+        callback({ liked, playing: (<HTMLElement>elt).innerText.replaceAll("\n\n"," - ") });
     else
         console.debug("Callback is null");
 }
