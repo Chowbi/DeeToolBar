@@ -47,7 +47,14 @@ function SetStatuses(request, callback) {
     let elt = document.querySelector('.css-dsap3z');
 
     if (callback !== null)
-        callback({ liked, playing: (<HTMLElement>elt).innerText.split("\r").join("").split("\n").join("") });
+    {
+        let playing = (<HTMLElement>elt).innerText.trim();
+        playing = playing.split('\r').join('');
+        playing = playing.split('\n').join("|||");
+        playing = playing.split("||||||").join("|||").split("||||||").join("|||");
+        playing = playing.replace("|||", " - ");
+        callback({ liked: liked, playing: playing });
+    }
     else
         console.debug("Callback is null");
 }

@@ -43,7 +43,7 @@ function UpdateShortcutsStatus(status) {
 
 function UpdateStatuses(statuses) {
     var src = "../Content/";
-    src += statuses.status ? "liked.png" : "notLiked.png";
+    src += statuses.liked ? "liked.png" : "notLiked.png";
     document.getElementById("Like").setAttribute("src", src);
 
     document.getElementById("playing").innerText = statuses.playing;

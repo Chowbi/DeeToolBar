@@ -1,15 +1,14 @@
 {
   "manifest_version": 2,
   "name": "DeezerToolbar",
-  "version": "2.4",
+  "version": "2.6",
 
   "description": "Adds a browser action icon to the toolbar to take control of deezer tab.",
 
   "icons": {
-    "48": "Content/play.png",
-    "96": "Content/play.png"
+    "48": "Content/play.png"
   },
-  "applications": {
+  "browser_specific_settings": {
     "gecko": {
       "id": "deetoolbar@mozilla.org"
     }
